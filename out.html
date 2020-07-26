@@ -1,0 +1,1086 @@
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body>
+<span style="position:absolute; border: gray 1px solid; left:0px; top:50px; width:595px; height:841px;"></span>
+<div style="position:absolute; top:50px;"><a name="1">Page 1</a></div>
+<div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:88px; top:179px; width:429px; height:92px;"><span style="font-family: unknown; font-size:17px">워드 임베딩과 딥러닝 기법을 이용한 SMS 문자 메시지
+<br>필터링
+<br></span><span style="font-family: unknown; font-size:11px">( SMS Text Messages Filtering using Word Embedding and Deep Learning Techniques )
+<br></span><span style="font-family: unknown; font-size:11px">이현영</span><span style="font-family: unknown; font-size:7px">*</span><span style="font-family: unknown; font-size:11px">, 강승식</span><span style="font-family: unknown; font-size:7px">**
+<br></span><span style="font-family: unknown; font-size:11px">(Hyun Young Lee, Seung Shik Kang)
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:69px; top:303px; width:456px; height:79px;"><span style="font-family: unknown; font-size:8px">딥러닝에서 자연어 처리를 위한 텍스트 분석 기법은 워드 임베딩을 통해 단어를 벡터 형태로 표현한다. 본 논문에서는
+<br>워드 임베딩 기법과 딥러닝 기법을 이용하여 SMS 문자 메시지를 문서 벡터로 구성하고 이를 스팸 문자 메시지와 정상적
+<br>인 문자 메시지로 분류하는 방법을 제안하였다. 유사한 문맥을 가진 단어들은 벡터 공간에서 인접한 벡터 공간에 표현되
+<br>도록 하기 위해 전처리 과정으로 자동 띄어쓰기를 적용하고 스팸 문자 메시지로 차단되는 것을 피하기 위한 목적으로 음
+<br>절의 자모를 특수기호로 왜곡하여 맞춤법이 파괴된 상태로 단어 벡터와 문장 벡터를 생성하였다. 또한 문장 벡터 생성 시
+<br>CBOW와 skip gram이라는 두 가지 워드 임베딩 알고리즘을 적용하여 문장 벡터를 표현하였으며, 딥러닝을 이용한 스팸
+<br></span><span style="font-family: unknown; font-size:8px">문자 메시지 필터링의 성능 평가를 위해 SVM Light와 정확도를 비교 측정하였다.
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:77px; top:397px; width:309px; height:8px;"><span style="font-family: unknown; font-size:8px">■ 중심어 : 스팸 문자 메시지 ; 워드 임베딩 ; 문장 벡터 ; 딥러닝 ; 이진 분류
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:76px; top:432px; width:449px; height:8px;"><span style="font-family: unknown; font-size:8px">Text analysis technique for natural language processing in deep learning represents words in vector form through
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:69px; top:446px; width:456px; height:8px;"><span style="font-family: unknown; font-size:8px">word embedding. In this paper, we propose a method of constructing a document vector and classifying it into spam
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:69px; top:460px; width:311px; height:8px;"><span style="font-family: unknown; font-size:8px">and normal text message, using word embedding and deep learning method.
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:76px; top:474px; width:448px; height:8px;"><span style="font-family: unknown; font-size:8px">Automatic spacing applied in the preprocessing process ensures that words with similar context are adjacently
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:69px; top:488px; width:179px; height:8px;"><span style="font-family: unknown; font-size:8px">represented in vector space. Additionally,
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:256px; top:488px; width:269px; height:8px;"><span style="font-family: unknown; font-size:8px">the intentional word formation errors with non-alphabetic or
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:69px; top:502px; width:349px; height:8px;"><span style="font-family: unknown; font-size:8px">extraordinary characters are designed to avoid being blocked by spam message filter.
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:76px; top:516px; width:449px; height:8px;"><span style="font-family: unknown; font-size:8px">Two embedding algorithms, CBOW and skip grams, are used to produce the sentence vector and the performance
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:69px; top:530px; width:456px; height:8px;"><span style="font-family: unknown; font-size:8px">and the accuracy of deep learning based spam filter model are measured by comparing to those of SVM Light.
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:76px; top:558px; width:56px; height:8px;"><span style="font-family: unknown; font-size:8px">■ keywords :
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:141px; top:558px; width:365px; height:8px;"><span style="font-family: unknown; font-size:8px">spam text message ; word embedding ; text vector ; deep learning ; binary classification
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:145px; top:593px; width:49px; height:11px;"><span style="font-family: Batang; font-size:11px">Ⅰ</span><span style="font-family: unknown; font-size:11px">. 서 론
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:576px; width:227px; height:8px;"><span style="font-family: unknown; font-size:8px">이터를 분류하는 것에 있어서 다른 기법들보다 더 나은 성능을
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:591px; width:227px; height:8px;"><span style="font-family: unknown; font-size:8px">보인다고 알려져 있다[5, 6]. 지지 벡터 기계는 자질 벡터
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:605px; width:227px; height:8px;"><span style="font-family: unknown; font-size:8px">(feature vector)를 이용하는 기계학습 방법으로 자질 벡터의
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:64px; top:619px; width:220px; height:8px;"><span style="font-family: unknown; font-size:8px">스마트폰이 대중화되면서 SMS(short message service) 문
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:620px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">구성이 분류 성능에 큰 영향을 미친다. 이에 따라 스팸 문자 메
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:634px; width:227px; height:8px;"><span style="font-family: unknown; font-size:8px">자 메시지 전송을 통한 의사소통 방식이 보편화됨에 따라 텍스
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:635px; width:227px; height:8px;"><span style="font-family: unknown; font-size:8px">시지 필터링을 위한 벡터 표현은 성능에 영향을 끼치는 중요한
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:649px; width:227px; height:8px;"><span style="font-family: unknown; font-size:8px">트 형태의 데이터의 양도 대량으로 증가하고 있다[1]. 그 부작
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:650px; width:227px; height:8px;"><span style="font-family: unknown; font-size:8px">요소이다[7]. 현재 텍스트에 대한 벡터의 표현 방식으로
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:664px; width:227px; height:8px;"><span style="font-family: unknown; font-size:8px">용으로 성인광고, 대출광고, 게임광고 등의 스팸 문자 텍스트 데
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:665px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">TF-IDF가 가장 널리 사용되고 있지만, TF-IDF의 경우에는
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:678px; width:227px; height:8px;"><span style="font-family: unknown; font-size:8px">이터도 폭발적으로 증가하여 이를 필터링 하기 위한 다양한 기
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:680px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">단어 수가 증가함에 따라 차원의 수도 같이 증가하여 대용량 단
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:693px; width:227px; height:8px;"><span style="font-family: unknown; font-size:8px">법들이 개발되고 있다[2]. 이러한 스팸 문자 메시지 데이터를
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:694px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">어들을 처리하는데 어려움 있다. 이러한 차원수 증가 문제를 해
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:708px; width:227px; height:8px;"><span style="font-family: unknown; font-size:8px">효율적으로 필터링하는 방법 중 널리 보편적으로 사용되는 방
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:709px; width:227px; height:8px;"><span style="font-family: unknown; font-size:8px">결하기 위해 TF-IDF는 고차원의 벡터를 저차원의 벡터로 차
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:723px; width:227px; height:8px;"><span style="font-family: unknown; font-size:8px">법론으로는 통계적 확률 방법론과 지지 벡터 기계(SVM) 등의
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:724px; width:227px; height:8px;"><span style="font-family: unknown; font-size:8px">원 축소 작업을 추가로 수행해야 한다. 하지만 신경망 언어 모
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:738px; width:103px; height:8px;"><span style="font-family: unknown; font-size:8px">기계학습 방법이 있다[3, 4].
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:739px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">델의 워드 임베딩 통한 단어 벡터는 기존의 TF-IDF보다 차원
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:64px; top:753px; width:220px; height:8px;"><span style="font-family: unknown; font-size:8px">기계학습 방법론 중, 지지 벡터 기계는 스팸 문자 메시지 데
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:754px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">축소에 자유롭고, 벡터를 통한 단어 의미 유사성 추론에서도 더
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:70px; top:779px; width:132px; height:20px;"><span style="font-family: unknown; font-size:5px">* </span><span style="font-family: unknown; font-size:8px">학생회원, 국민대학교 컴퓨터공학학과
+<br></span><span style="font-family: unknown; font-size:5px">** </span><span style="font-family: unknown; font-size:8px">정회원, 국민대학교 소프트웨어학부
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:78px; top:801px; width:431px; height:8px;"><span style="font-family: unknown; font-size:8px">이 논문은 2017년도 정부(미래창조과학부)의 재원으로 한국연구재단의 지원을 받아 수행된 연구임 (No.NRF-2017M3C4A7068186).
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:70px; top:815px; width:97px; height:20px;"><span style="font-family: unknown; font-size:8px">접수일자 : 2018년 03월 05일
+<br></span><span style="font-family: unknown; font-size:8px">수정일자 : 2018년 04월 11일
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:301px; top:815px; width:165px; height:20px;"><span style="font-family: unknown; font-size:8px">게재확정일 : 2018년 04월 28일
+<br></span><span style="font-family: unknown; font-size:8px">교신저자 : 강승식 e-mail : sskang@kookmin.ac.kr
+<br></span></div><div style="position:absolute; border: figure 1px solid; writing-mode:False; left:0px; top:50px; width:594px; height:74px;"><div style="position:absolute; border: figure 1px solid; writing-mode:False; left:0px; top:67px; width:594px; height:38px;"></div></div><span style="position:absolute; border: black 1px solid; left:58px; top:169px; width:479px; height:2px;"></span>
+<span style="position:absolute; border: black 1px solid; left:58px; top:171px; width:13px; height:104px;"></span>
+<span style="position:absolute; border: black 1px solid; left:58px; top:279px; width:479px; height:15px;"></span>
+<div style="position:absolute; border: figure 1px solid; writing-mode:False; left:69px; top:281px; width:22px; height:13px;"></div><div style="position:absolute; border: figure 1px solid; writing-mode:False; left:85px; top:281px; width:17px; height:13px;"></div><span style="position:absolute; border: black 1px solid; left:58px; top:411px; width:479px; height:15px;"></span>
+<div style="position:absolute; border: figure 1px solid; writing-mode:False; left:69px; top:412px; width:52px; height:13px;"></div><span style="position:absolute; border: black 1px solid; left:58px; top:572px; width:479px; height:2px;"></span>
+<span style="position:absolute; border: black 1px solid; left:57px; top:275px; width:479px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:71px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:72px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:72px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:73px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:74px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:75px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:76px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:77px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:77px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:78px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:79px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:80px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:81px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:82px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:82px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:83px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:84px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:85px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:86px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:87px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:88px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:88px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:89px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:90px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:91px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:92px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:93px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:93px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:94px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:95px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:96px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:97px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:98px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:98px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:99px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:100px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:101px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:102px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:103px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:103px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:104px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:105px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:106px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:107px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:108px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:109px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:109px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:110px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:111px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:112px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:113px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:114px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:114px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:115px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:116px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:117px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:118px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:119px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:119px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:120px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:121px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:122px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:123px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:124px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:124px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:125px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:126px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:127px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:128px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:129px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:130px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:130px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:131px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:132px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:133px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:134px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:135px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:135px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:136px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:137px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:138px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:139px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:140px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:140px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:141px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:142px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:143px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:144px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:145px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:145px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:146px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:147px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:148px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:149px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:150px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:150px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:151px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:152px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:153px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:154px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:155px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:156px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:156px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:157px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:158px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:159px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:160px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:161px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:161px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:162px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:163px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:164px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:165px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:166px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:166px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:167px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:168px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:169px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:170px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:171px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:171px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:172px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:173px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:174px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:175px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:176px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:177px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:177px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:178px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:179px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:180px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:181px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:182px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:182px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:183px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:184px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:185px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:186px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:187px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:187px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:188px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:189px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:190px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:191px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:192px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:192px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:193px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:194px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:195px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:196px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:197px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:198px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:198px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:199px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:200px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:201px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:202px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:203px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:203px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:204px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:205px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:206px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:207px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:208px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:208px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:209px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:210px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:211px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:212px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:213px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:213px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:214px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:215px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:216px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:217px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:218px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:219px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:219px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:220px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:221px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:222px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:223px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:224px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:224px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:225px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:226px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:227px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:228px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:229px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:229px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:230px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:231px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:232px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:233px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:234px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:234px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:235px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:236px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:237px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:238px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:239px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:239px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:240px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:241px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:242px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:243px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:244px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:245px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:245px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:246px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:247px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:248px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:249px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:250px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:250px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:251px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:252px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:253px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:254px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:255px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:255px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:256px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:257px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:258px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:259px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:260px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:260px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:261px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:262px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:263px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:264px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:265px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:266px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:266px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:267px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:268px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:269px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:270px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:271px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:271px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:272px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:273px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:274px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:275px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:276px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:276px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:277px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:278px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:279px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:280px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:281px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:281px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:282px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:283px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:284px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:285px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:286px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:287px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:287px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:288px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:289px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:290px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:291px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:292px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:292px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:293px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:294px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:295px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:296px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:297px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:297px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:298px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:299px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:300px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:301px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:302px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:302px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:303px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:304px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:305px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:306px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:307px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:307px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:308px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:309px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:310px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:311px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:312px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:313px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:313px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:314px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:315px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:316px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:317px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:318px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:318px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:319px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:320px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:321px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:322px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:323px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:323px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:324px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:325px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:326px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:327px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:328px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:328px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:329px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:330px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:331px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:332px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:333px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:334px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:334px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:335px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:336px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:337px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:338px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:339px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:339px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:340px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:341px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:342px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:343px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:344px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:344px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:345px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:346px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:347px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:348px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:349px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:349px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:350px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:351px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:352px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:353px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:354px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:355px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:355px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:356px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:357px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:358px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:359px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:360px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:360px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:361px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:362px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:363px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:364px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:365px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:365px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:366px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:367px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:368px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:369px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:370px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:370px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:371px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:372px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:373px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:374px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:375px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:375px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:376px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:377px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:378px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:379px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:380px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:381px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:381px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:382px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:383px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:384px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:385px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:386px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:386px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:387px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:388px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:389px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:390px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:391px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:391px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:392px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:393px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:394px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:395px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:396px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:396px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:397px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:398px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:399px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:400px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:401px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:402px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:402px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:403px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:404px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:405px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:406px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:407px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:407px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:408px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:409px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:410px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:411px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:412px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:412px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:413px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:414px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:415px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:416px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:417px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:417px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:418px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:419px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:420px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:421px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:422px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:423px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:423px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:424px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:425px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:426px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:427px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:428px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:428px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:429px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:430px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:431px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:432px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:433px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:433px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:434px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:435px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:436px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:437px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:438px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:438px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:439px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:440px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:441px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:442px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:443px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:444px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:444px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:445px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:446px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:447px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:448px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:449px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:449px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:450px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:451px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:452px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:453px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:454px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:454px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:455px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:456px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:457px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:458px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:459px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:459px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:460px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:461px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:462px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:463px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:464px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:464px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:465px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:466px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:467px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:468px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:469px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:470px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:470px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:471px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:472px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:473px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:474px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:475px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:475px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:476px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:477px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:478px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:479px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:480px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:480px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:481px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:482px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:483px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:484px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:485px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:485px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:486px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:487px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:488px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:489px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:490px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:491px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:491px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:492px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:493px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:494px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:495px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:496px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:496px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:497px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:498px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:499px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:500px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:501px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:501px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:502px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:503px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:504px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:505px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:506px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:506px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:507px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:508px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:509px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:510px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:511px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:512px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:512px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:513px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:514px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:515px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:516px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:517px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:517px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:518px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:519px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:520px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:521px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:522px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:522px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:523px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:524px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:525px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:526px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:527px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:527px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:528px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:529px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:530px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:531px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:532px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:532px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:533px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:534px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:535px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:536px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:537px; top:237px; width:0px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:58px; top:779px; width:475px; height:0px;"></span>
+<div style="position:absolute; border: figure 1px solid; writing-mode:False; left:72px; top:88px; width:146px; height:0px;"></div><div style="position:absolute; border: figure 1px solid; writing-mode:False; left:325px; top:88px; width:197px; height:0px;"></div><span style="position:absolute; border: gray 1px solid; left:0px; top:941px; width:595px; height:841px;"></span>
+<div style="position:absolute; top:941px;"><a name="2">Page 2</a></div>
+<div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:1040px; width:118px; height:8px;"><span style="font-family: unknown; font-size:8px">나은 성능을 보여준다[8, 9, 10].
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:1040px; width:227px; height:8px;"><span style="font-family: unknown; font-size:8px">수에 비례하게 커지는 차원 수 증가 문제를 해결하였다[13].
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:64px; top:1055px; width:220px; height:8px;"><span style="font-family: unknown; font-size:8px">문서나 문장 등의 데이터를 이미 정해진 범주에 따라 분류
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:317px; top:1055px; width:220px; height:8px;"><span style="font-family: unknown; font-size:8px">그림 1은 단어 벡터를 표현하는 방법인 CBOW와 skip
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:1070px; width:227px; height:8px;"><span style="font-family: unknown; font-size:8px">하는 방법으로는 K-NN 방법, SVM, Naive Bayes 등의 기계
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:1070px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">gram이다. 이 두 개의 워드 임베딩 방법은 서로 다른 방법으
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:1085px; width:227px; height:8px;"><span style="font-family: unknown; font-size:8px">학습 방법들을 이용하고 있다[11]. 하지만 스팸 문자 메시지
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:1084px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">로 단어를 벡터로 표현한다. CBOW의 경우는 중심 단어의 주
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:1099px; width:227px; height:8px;"><span style="font-family: unknown; font-size:8px">필터링은 정해진 범주를 2개로 고정하여 여러 문장 및 구 형
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:1099px; width:227px; height:8px;"><span style="font-family: unknown; font-size:8px">변 단어들로부터 중심단어를 예측하고, skip gram은 중심단
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:1114px; width:227px; height:8px;"><span style="font-family: unknown; font-size:8px">태의 텍스트 데이터를 분류하는 이진 분류(binary
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:1114px; width:227px; height:8px;"><span style="font-family: unknown; font-size:8px">어에서 주변 단어들 예측하여 중심 단어를 벡터로 표현한다.
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:1129px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">classification) 문제이므로 분류 기법에 적합한 딥러닝 모델을
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:1129px; width:227px; height:8px;"><span style="font-family: unknown; font-size:8px">단어 벡터를 생성하는 CBOW와 skip gram으로 문장을 구성
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:1144px; width:196px; height:8px;"><span style="font-family: unknown; font-size:8px">이용하여 스팸 문자 메시지를 필터링하고자 하였다.
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:1144px; width:200px; height:8px;"><span style="font-family: unknown; font-size:8px">하는 단어 벡터를 생성하여 문장 벡터로 표현하였다.
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:64px; top:1159px; width:220px; height:8px;"><span style="font-family: unknown; font-size:8px">딥러닝 모델 중 분류 문제에 가장 널리 사용되는 모델은 연
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:1174px; width:227px; height:8px;"><span style="font-family: unknown; font-size:8px">속성의 데이터를 분류하는 RNN(recurrent neural network),
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:1188px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">특징 벡터를 추출하여 분류하는 CNN(convolution neural
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:1203px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">network), 고정 길이의 특징 벡터를 분류하는 전방향 신경망
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:1218px; width:204px; height:8px;"><span style="font-family: unknown; font-size:8px">(feed-forward neural network) 등이 있다[12, 13, 14].
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:64px; top:1233px; width:220px; height:8px;"><span style="font-family: unknown; font-size:8px">본 연구에서는 신경망을 이용한 워드 임베딩(word
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:1248px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">embedding)으로 문자 메시지를 벡터로 표현하고 전방향 신경
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:1263px; width:216px; height:8px;"><span style="font-family: unknown; font-size:8px">망을 이용하는 스팸 문자 메시지 필터링 기법을 제안한다.
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:145px; top:1292px; width:49px; height:11px;"><span style="font-family: Batang; font-size:11px">Ⅱ</span><span style="font-family: unknown; font-size:11px">. 본 론
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:66px; top:1318px; width:152px; height:10px;"><span style="font-family: unknown; font-size:10px">1. 워드 임베딩과 문장 벡터 구성
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:64px; top:1349px; width:220px; height:8px;"><span style="font-family: unknown; font-size:8px">SMS 문자 메시지 데이터를 살펴보면, 하나의 문장 및 구는
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:1364px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">단어들의 집합이므로 각 단어들의 빈도수를 이용하여 하나의
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:1379px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">벡터로 표현될 수 있다. 이러한 빈도수 기반의 벡터는 단어의
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:1394px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">수가 많아짐에 따라 차원의 수도 비례하게 커지는 차원의 저
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:1409px; width:227px; height:8px;"><span style="font-family: unknown; font-size:8px">주라는 문제점이 있다. 예를 들어, 아래 5개의 문장을 살펴보
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:1423px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">면, 띄어쓰기를 기준으로 벡터로 표현하기 위한 총 차원 수는
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:1438px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">13이다. 1번 문장을 구성하는 “회의”, “중이니”, “나중에”, “하
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:1468px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">장을 구성하지 않는 단어들은 0으로, 문장을 구성하는 단어들
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:370px; top:1426px; width:107px; height:9px;"><span style="font-family: unknown; font-size:9px">그림 1. CBOW와 skip gram
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:1453px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">겠습니다.”라는 단어들을 가지고 문장 벡터로 표현한다면, 문
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:320px; top:1451px; width:199px; height:10px;"><span style="font-family: unknown; font-size:10px">2. SMS 문자 메시지의 띄어쓰기 오류 문제
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:1483px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">은 각 단어의 빈도수로 채우는 형태의 [0, 1, 0, 0, 1, 1, 0, 0,
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:317px; top:1484px; width:220px; height:8px;"><span style="font-family: unknown; font-size:8px">사용자들이 문자 메시지를 전송할 때 단어들 사이에 공백
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:1498px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">1, 0, 1, 0, 0]와 같은 문장 벡터를 생성하게 된다. 하지만 이러
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:1499px; width:227px; height:8px;"><span style="font-family: unknown; font-size:8px">문자를 의도적으로 삽입하거나 제거하여 문자 메시지를 전송
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:1512px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">한 문장 벡터는 단어 수가 증가함에 따라 차원 수도 증가하는
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:1514px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">한다. 아래 예제는 스팸 문자 메시지에 자동 띄어쓰기를 적용
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:1527px; width:93px; height:8px;"><span style="font-family: unknown; font-size:8px">문제점을 내포하고 있다.
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:70px; top:1551px; width:143px; height:8px;"><span style="font-family: Haansoft Batang; font-size:8px">1. 회의  중이니  나중에  전화하겠습니다.
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:70px; top:1567px; width:87px; height:8px;"><span style="font-family: Haansoft Batang; font-size:8px">2. 즐거운  주말보내세요
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:70px; top:1584px; width:124px; height:8px;"><span style="font-family: Haansoft Batang; font-size:8px">3. 지금  전화를  받을  수  없습니다.
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:70px; top:1600px; width:75px; height:8px;"><span style="font-family: Haansoft Batang; font-size:8px">4. 저녁  약속있나요?
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:70px; top:1616px; width:72px; height:8px;"><span style="font-family: Haansoft Batang; font-size:8px">5. 저녁먹자^^~~
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:1529px; width:76px; height:8px;"><span style="font-family: unknown; font-size:8px">한 예제의 일부이다.
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:1558px; width:77px; height:8px;"><span style="font-family: unknown; font-size:8px">- 자동 띄어쓰기 전:
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:319px; top:1588px; width:88px; height:8px;"><span style="font-family: unknown; font-size:8px">년엄청혜택QQ2480.com
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:1618px; width:77px; height:8px;"><span style="font-family: unknown; font-size:8px">- 자동 띄어쓰기 후:
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:319px; top:1573px; width:218px; height:8px;"><span style="font-family: unknown; font-size:8px">1억을진짜먹네남일같았던1억강원에뺏긴돈이곳에선가능신
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:64px; top:1649px; width:220px; height:8px;"><span style="font-family: unknown; font-size:8px">이러한 문제점을 해결하기 위해, 차원 수 조절에 자유롭고,
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:319px; top:1647px; width:121px; height:8px;"><span style="font-family: unknown; font-size:8px">가능신년 엄청혜택 QQ2480.com
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:1664px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">단어의 의미를 벡터로 표현하는데도 효율적인 신경망을 이용
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:1679px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">한 CBOW와 skip gram으로 단어 벡터를 생성하여 전체 단어
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:317px; top:1677px; width:220px; height:8px;"><span style="font-family: unknown; font-size:8px">위 예제를 살펴보면, “1억을진짜먹네남일같았던1억강원에
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:319px; top:1632px; width:218px; height:8px;"><span style="font-family: unknown; font-size:8px">1억을 진짜먹네 남일 같았던 1억 강원에 뺏긴돈 이곳에선
+<br></span></div><div style="position:absolute; border: figure 1px solid; writing-mode:False; left:0px; top:941px; width:594px; height:74px;"><div style="position:absolute; border: figure 1px solid; writing-mode:False; left:0px; top:958px; width:594px; height:38px;"></div></div><div style="position:absolute; border: figure 1px solid; writing-mode:False; left:310px; top:1173px; width:227px; height:244px;"></div><span style="position:absolute; border: black 1px solid; left:65px; top:1550px; width:0px; height:76px;"></span>
+<span style="position:absolute; border: black 1px solid; left:274px; top:1550px; width:0px; height:76px;"></span>
+<span style="position:absolute; border: black 1px solid; left:65px; top:1550px; width:209px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:65px; top:1627px; width:209px; height:0px;"></span>
+<div style="position:absolute; border: figure 1px solid; writing-mode:False; left:72px; top:979px; width:197px; height:0px;"></div><div style="position:absolute; border: figure 1px solid; writing-mode:False; left:368px; top:979px; width:154px; height:0px;"></div><span style="position:absolute; border: gray 1px solid; left:0px; top:1832px; width:595px; height:841px;"></span>
+<div style="position:absolute; top:1832px;"><a name="3">Page 3</a></div>
+<div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:1931px; width:227px; height:8px;"><span style="font-family: unknown; font-size:8px">뺏긴돈이곳에선가능신년엄청혜택QQ2480.com”의 문장은 띄
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:317px; top:1931px; width:220px; height:8px;"><span style="font-family: unknown; font-size:8px">- 보험 가입 후 나는 늦은 밤에 숙소에서 저녁밥을 먹었다.
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:1946px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">어쓰기를 기준으로 문장 자체가 하나의 단어인 희소한 형태로
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:1961px; width:227px; height:8px;"><span style="font-family: unknown; font-size:8px">이루어진다. 이러한 희소한 형태의 단어는 워드 임베딩에 의
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:317px; top:1961px; width:220px; height:8px;"><span style="font-family: unknown; font-size:8px">스팸 문자 메시지에서는 “첫!가!입!”, “㉸㉨ⓛN0”, “ㅇ‡ㅁ†토
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:1976px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">한 문장 및 구를 벡터로 표현하는 질을 저하 시키는 요인이 될
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:1975px; width:228px; height:9px;"><span style="font-family: unknown; font-size:8px">가”, “┓┠입 ”, “つ</span><span style="font-family: Batang; font-size:8px">г</span><span style="font-family: unknown; font-size:8px">입즉</span><span style="font-family: Batang; font-size:8px">ΛΙ</span><span style="font-family: unknown; font-size:8px">”와 같은 한글단어들의 초성, 중성,
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:1990px; width:45px; height:8px;"><span style="font-family: unknown; font-size:8px">수 있다[13].
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:1990px; width:227px; height:8px;"><span style="font-family: unknown; font-size:8px">종성을 유사한 형태의 영어나 다른 나라의 언어, 특수기호, 숫자
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:2005px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">등으로 대치하여 단어를 다양한 형태에 단어로 왜곡시킨다. 그
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:64px; top:2020px; width:162px; height:8px;"><span style="font-family: unknown; font-size:8px">- 공백이 삽입된 단어의 자동 띄어쓰기 예
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:2020px; width:227px; height:8px;"><span style="font-family: unknown; font-size:8px">리하여 보편적인 스팸 문자 메시지 필터링 시스템에서는 이러
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:96px; top:2035px; width:118px; height:8px;"><span style="font-family: unknown; font-size:8px">띄어쓰기 전 : 띄어쓰기 후
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:2035px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">한 왜곡된 단어들을 “첫가입”, “카지노”, “가입즉시”와 같은 정
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:109px; top:2050px; width:20px; height:8px;"><span style="font-family: unknown; font-size:8px">애 플
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:155px; top:2050px; width:2px; height:8px;"><span style="font-family: unknown; font-size:8px">:
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:187px; top:2050px; width:16px; height:8px;"><span style="font-family: unknown; font-size:8px">애플
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:97px; top:2065px; width:60px; height:8px;"><span style="font-family: unknown; font-size:8px">Ｎ Ｈ 금 융 :
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:179px; top:2065px; width:32px; height:8px;"><span style="font-family: unknown; font-size:8px">ＮＨ금융
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:97px; top:2079px; width:60px; height:8px;"><span style="font-family: unknown; font-size:8px">대 리 운 전 :
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:178px; top:2079px; width:33px; height:8px;"><span style="font-family: unknown; font-size:8px">대리운전
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:2050px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">규화 과정을 거처 스팸 문자 메시지 필터링을 위한 어휘 사전과
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:2065px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">의 비교를 통해 스팸 문자 메시지를 차단하고 있다[18, 19]. 분
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:2079px; width:227px; height:8px;"><span style="font-family: unknown; font-size:8px">산 가설에 의한 워드 임베딩은 왜곡된 단어의 문맥과 왜곡되지
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:2094px; width:227px; height:8px;"><span style="font-family: unknown; font-size:8px">않은 단어의 문맥이 유사하다면 같은 문맥을 가진 단어는 벡터
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:64px; top:2109px; width:220px; height:8px;"><span style="font-family: unknown; font-size:8px">위 예제는 문자 메시지의 한 어절마다 공백문자를 삽입하여
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:2109px; width:227px; height:8px;"><span style="font-family: unknown; font-size:8px">공간상에서 유사한 위치에 나타나도록 단어 벡터를 위치시킨다.
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:2124px; width:227px; height:8px;"><span style="font-family: unknown; font-size:8px">단어를 변형시킨 스팸 문자메시지의 예제 일부이다. 위 예제
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:2124px; width:227px; height:8px;"><span style="font-family: unknown; font-size:8px">CBOW와 skip gram을 통한 워드 임베딩에서는 “가입즉시”와
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:2139px; width:227px; height:8px;"><span style="font-family: unknown; font-size:8px">를 살펴보면 하나의 어절마다 띄어쓰기를 적용하여 “N H 금
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:2138px; width:228px; height:9px;"><span style="font-family: unknown; font-size:8px">“つ</span><span style="font-family: Batang; font-size:8px">г</span><span style="font-family: unknown; font-size:8px">입즉</span><span style="font-family: Batang; font-size:8px">ΛΙ</span><span style="font-family: unknown; font-size:8px">”의 각 단어 벡터는 같은 문맥과 함께 사용된다면 벡
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:2154px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">융” 등과 같이 고의로 공백문자를 삽입하여 “NH금융”의 단어
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:2154px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">터 공간상에 유사한 위치에 분포한다. 이러한 분포를 통해 두
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:2168px; width:227px; height:8px;"><span style="font-family: unknown; font-size:8px">를 변형시킨다. 이러한 변형된 형태는 의미가 유사한 단어는
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:2168px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">단어는 유사한 의미를 지닌 단어라고 유추가 가능하고, 또한 왜
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:2183px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">그 단어의 주변의 단어들도 유사한 분포를 가진다는 분산 가
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:2183px; width:227px; height:8px;"><span style="font-family: unknown; font-size:8px">곡된 단어의 문맥과 왜곡 되지 않은 단어의 문맥이 다르면 각
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:2198px; width:227px; height:8px;"><span style="font-family: unknown; font-size:8px">설(distribution hypothesis)에 의한 워드 임베딩의 단어를 표
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:2198px; width:227px; height:8px;"><span style="font-family: unknown; font-size:8px">단어는 벡터 공간상에서 유사한 위치가 아닌 먼 거리에 위치하
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:2213px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">현하는 벡터의 질을 저하시킨다. 즉, “애플”이라는 단어 벡터
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:2213px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">여 각 단어를 구분하는데 용이하다. 이를 통해 자모를 특수한
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:2228px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">생성 시 자동 띄어쓰기를 적용하지 않는 경우 “애”와 “플”이
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:2228px; width:227px; height:8px;"><span style="font-family: unknown; font-size:8px">기호로 대치한 왜곡된 형태의 단어의 정규화를 거친 단어들이
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:2242px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">라는 각각 음절이 서로를 의미를 나타내는 문맥(context)으로
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:2242px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">포함된 정상적인 문자 메시지를 스팸 문자 메시지로 잘 못 필터
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:2257px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">사용되어 저 빈도 음절 벡터를 생성한다. 그리하여 “애플”이
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:2257px; width:227px; height:8px;"><span style="font-family: unknown; font-size:8px">링하는 경우를 예방하고자 하였고, 왜곡된 단어를 정규화하는
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:2272px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">라는 단어 벡터 생성 시 필요한 문맥에 영향을 주어 올바른 단
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:2272px; width:227px; height:8px;"><span style="font-family: unknown; font-size:8px">불필요한 과정을 생략하였다. 이러한 왜곡된 단어들도 하나의
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:2287px; width:146px; height:8px;"><span style="font-family: unknown; font-size:8px">어 벡터 생성에 영향을 미친다[15, 16].
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:2287px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">단어 토큰(token)으로 하는 방법을 통해 왜곡되지 않은 단어와
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:64px; top:2302px; width:220px; height:8px;"><span style="font-family: unknown; font-size:8px">본 연구에서는 분산 가설에 의해 자동 띄어쓰기를 적용하여
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:2302px; width:210px; height:8px;"><span style="font-family: unknown; font-size:8px">왜곡된 단어의 구분하기 좋은 단어 벡터들을 생성하였다.
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:2317px; width:227px; height:8px;"><span style="font-family: unknown; font-size:8px">어절마다 공백이 삽입된 단어는 공백을 제거하고, 공백을 제
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:317px; top:2317px; width:220px; height:8px;"><span style="font-family: unknown; font-size:8px">문자 메시지는 이를 구성하는 단어들의 벡터 합으로 문장 벡
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:2331px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">거한 문장은 공백을 삽입하여 올바른 형태의 단어와 문장으로
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:2331px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">터로 표현하였다. 이는 유사한 단어들의 집합으로 이루어진 문
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:2346px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">바꾸는 과정을 수행하여 단어의 의미를 잘 표현하는 단어 벡
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:2346px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">자 메시지는 단어 집합에 속한 단어들의 벡터 합으로 벡터 공간
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:2361px; width:78px; height:8px;"><span style="font-family: unknown; font-size:8px">터를 생성하였다[17].
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:2361px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">상에 유사한 위치로 위치시킬 수 있다. 그리하여 문자 메시지를
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:2376px; width:227px; height:8px;"><span style="font-family: unknown; font-size:8px">구성하는 단어들의 벡터 합으로 문장 및 구를 벡터로 표현하였
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:317px; top:2406px; width:220px; height:8px;"><span style="font-family: unknown; font-size:8px">본 연구에서는 분류기로 자질 벡터의 구성이 분류 성능에 영
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:66px; top:2391px; width:203px; height:10px;"><span style="font-family: unknown; font-size:10px">3. 문장 벡터를 이용한 스팸 문자 메시지 필터링
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:2391px; width:10px; height:8px;"><span style="font-family: unknown; font-size:8px">다.
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:64px; top:2422px; width:220px; height:8px;"><span style="font-family: unknown; font-size:8px">분산 가설에 의한 워드 임베딩은 유사한 의미를 가진 단어들
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:2420px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">향을 큰 영향을 미치는 지지 벡터 기계보다 벡터 외에도 은닉
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:2437px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">은 벡터 공간상에 유사한 위치에 위치시킨다. 이를 위하여 전처
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:2435px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">층(hidden layer)의 수, 활성화 함수(activation function), 학
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:2452px; width:227px; height:8px;"><span style="font-family: unknown; font-size:8px">리 과정으로서 자동 띄어쓰기를 적용하고 문장을 구성하는 단
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:2450px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">습 알고리즘 등의 요인들을 통해 분류 성능에 영향을 끼치는 전
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:2467px; width:227px; height:8px;"><span style="font-family: unknown; font-size:8px">어의 분포를 올바르게 유지하여 최대한 유사한 문맥들과 위치
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:2465px; width:227px; height:8px;"><span style="font-family: unknown; font-size:8px">방향 신경망을 분류기로 사용하여 문자 메시지를 스팸 문자 메
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:2482px; width:227px; height:8px;"><span style="font-family: unknown; font-size:8px">한 단어들은 벡터 공간상에서 유사한 위치에 위치하도록 하였
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:2480px; width:174px; height:8px;"><span style="font-family: unknown; font-size:8px">시지 또는 정상적인 문자 메시지로 분류하였다.
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:2496px; width:227px; height:8px;"><span style="font-family: unknown; font-size:8px">다. 아래 예제를 분산 가설로 살펴보면 “호텔에서”와 “숙소에
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:317px; top:2495px; width:220px; height:8px;"><span style="font-family: unknown; font-size:8px">그림 2의 분류(classification)과정은 전방향 신경망에 의한
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:2511px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">서”의 단어 의미는 문맥인 “보험”, “가입”, “후”, “나는”, “늦은”,
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:2509px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">이진 분류이며 전방향 신경망의 비선형 함수와 비용(cost) 함수
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:2526px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">“밤에”, “저녁밥을”, “먹었다”에 의해 표현되어 벡터 공간 상에
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:2524px; width:109px; height:8px;"><span style="font-family: unknown; font-size:8px">로는 시그모이드(sigmoid)
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:437px; top:2524px; width:17px; height:8px;"><span style="font-family: unknown; font-size:8px">함수,
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:472px; top:2524px; width:65px; height:8px;"><span style="font-family: unknown; font-size:8px">교차 엔트로피
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:2541px; width:105px; height:8px;"><span style="font-family: unknown; font-size:8px">유사한 위치에 나타난다[17].
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:2539px; width:135px; height:8px;"><span style="font-family: unknown; font-size:8px">(cross-entropy) 함수를 이용하였다.
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:64px; top:2571px; width:220px; height:8px;"><span style="font-family: unknown; font-size:8px">- 보험 가입 후 나는 늦은 밤에 호텔에서 저녁밥을 먹었다.
+<br></span></div><div style="position:absolute; border: figure 1px solid; writing-mode:False; left:0px; top:1832px; width:594px; height:74px;"><div style="position:absolute; border: figure 1px solid; writing-mode:False; left:0px; top:1849px; width:594px; height:38px;"></div></div><div style="position:absolute; border: figure 1px solid; writing-mode:False; left:72px; top:1870px; width:146px; height:0px;"></div><div style="position:absolute; border: figure 1px solid; writing-mode:False; left:325px; top:1870px; width:197px; height:0px;"></div><span style="position:absolute; border: gray 1px solid; left:0px; top:2723px; width:595px; height:841px;"></span>
+<div style="position:absolute; top:2723px;"><a name="4">Page 4</a></div>
+<div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:317px; top:2837px; width:220px; height:8px;"><span style="font-family: unknown; font-size:8px">문자 메시지를 구성하는 문장 및 구에 대한 벡터 표현을 위
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:2852px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">해 CBOW와 skip gram이라는 두 가지 방식의 워드 임베딩 알
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:2867px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">고리즘을 이용하여 단어 벡터를 생성하는 실험을 수행하였다.
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:2881px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">각각 워드 임베딩 방식을 통하여 하나의 문자 메시지를 구성
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:2896px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">하는 단어들의 벡터 합으로 문자 메시지를 벡터로 표현하였
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:2911px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">고, 이러한 고정 길의 문장 벡터로 딥러닝 모델인 전방향 신경
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:2926px; width:227px; height:8px;"><span style="font-family: unknown; font-size:8px">망과 SVM Light를 이용하여 스팸 문자 메시지 필터링의 정
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:2941px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">확도를 비교 측정하였다. 표 2는 전방향 신경망과 SVM Light
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:2955px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">에 의한 스팸 문자 메시지 필터링의 정확도 측정 결과이다. 전
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:2970px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">방향 신경망의 학습 방법은 경사도 하강법(gradient descent)
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:2985px; width:93px; height:8px;"><span style="font-family: unknown; font-size:8px">을 이용하여 학습하였다.
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:3012px; width:169px; height:9px;"><span style="font-family: unknown; font-size:9px">표 2. SVM Light와 전방향 신겸망의 정확도
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:68px; top:3036px; width:207px; height:9px;"><span style="font-family: unknown; font-size:9px">그림 2. 워드 임베딩과 딥러닝을 이용한 문자 메시지
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:165px; top:3048px; width:47px; height:9px;"><span style="font-family: unknown; font-size:9px">필터링 과정
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:64px; top:3078px; width:220px; height:8px;"><span style="font-family: unknown; font-size:8px">교차 엔트로피 함수의 입력 값으로는 스팸 문자 메시지인
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:3093px; width:227px; height:8px;"><span style="font-family: unknown; font-size:8px">지 정상적인 문자 메시지인지를 나타내는 2차원 벡터 형태의
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:3108px; width:227px; height:8px;"><span style="font-family: unknown; font-size:8px">정답 레이블(label)과 전방향 신경망의 출력 층의 2차원 벡터
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:3123px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">값을 소프트 맥스(softmax) 함수로 정규화한 값으로 이 두 개
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:323px; top:3052px; width:39px; height:8px;"><span style="font-family: Haansoft Batang; font-size:8px">SVM  Light
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:381px; top:3045px; width:37px; height:22px;"><span style="font-family: Haansoft Batang; font-size:8px">CBOW
+<br>Skip  gram
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:387px; top:3089px; width:23px; height:8px;"><span style="font-family: Haansoft Batang; font-size:8px">CBOW
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:313px; top:3108px; width:58px; height:20px;"><span style="font-family: Haansoft Batang; font-size:8px">Feed-forward
+<br>Neural  Network
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:3138px; width:227px; height:8px;"><span style="font-family: unknown; font-size:8px">2차원 벡터 값들의 확률분포 비교하여 교차 엔트로피 함수를
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:381px; top:3139px; width:37px; height:8px;"><span style="font-family: Haansoft Batang; font-size:8px">Skip  gram
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:3152px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">최소화하는 방향으로 학습을 진행하여 스팸 문자 메시지를 필
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:436px; top:3032px; width:20px; height:134px;"><span style="font-family: Haansoft Batang; font-size:8px">Layer
+<br></span><span style="font-family: Haansoft Batang; font-size:8px">⋅
+<br>⋅
+<br>1
+<br>2
+<br>3
+<br>4
+<br>1
+<br>2
+<br>3
+<br>4
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:474px; top:3032px; width:48px; height:134px;"><span style="font-family: Haansoft Batang; font-size:8px">Accuracy(%)
+<br></span><span style="font-family: Haansoft Batang; font-size:8px">95.72
+<br>93.57
+<br>95.4
+<br>95.19
+<br>95.87
+<br>95.53
+<br>93.56
+<br>93.84
+<br>93.57
+<br>94.06
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:3167px; width:43px; height:8px;"><span style="font-family: unknown; font-size:8px">터링하였다.
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:66px; top:3197px; width:97px; height:10px;"><span style="font-family: unknown; font-size:10px">4. 실험 및 성능 평가
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:321px; top:3186px; width:216px; height:8px;"><span style="font-family: unknown; font-size:8px">워드 임베딩에서 윈도우 크기는 8로 하였고, 워드 벡터는
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:3201px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">300차원으로 구성하였다. 표 2의 스팸 문자 메시지는 스팸 문
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:3215px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">자 메시지로 정상적인 문자 메시지는 정상적인 문자 메시지로
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:64px; top:3228px; width:220px; height:8px;"><span style="font-family: unknown; font-size:8px">워드 임베딩과 전방향 신경망을 이용한 스팸 문자 메시지
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:3230px; width:227px; height:8px;"><span style="font-family: unknown; font-size:8px">올바르게 분류하는 정확도에서 딥러닝 모델인 전방향 신경망
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:3243px; width:227px; height:8px;"><span style="font-family: unknown; font-size:8px">필터링을 위한 실험 데이터는 총 109,993개의 문자 데이터 집
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:3245px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">을 이용한 경우는 95.87%가 가장 높은 정확도로 SVM light의
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:3258px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">합이다. 이 데이터는 중복 단어를 포함하여 910,143개 단어들
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:3260px; width:191px; height:8px;"><span style="font-family: unknown; font-size:8px">95.72%보다 0.15% 더 높은 성능을 보여주고 있다.
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:3273px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">로 구성되었고 중복 단어 제거하면 895,918개의 단어들로 이
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:3288px; width:227px; height:8px;"><span style="font-family: unknown; font-size:8px">루어졌다. 실험 데이터를 표 1과 같이 학습 및 테스트용으로
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:3302px; width:43px; height:8px;"><span style="font-family: unknown; font-size:8px">분할하였다.
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:3290px; width:227px; height:9px;"><span style="font-family: unknown; font-size:9px">표 3. CBOW와 Skip gram의 차원 수에 따른 스팸 문자
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:344px; top:3302px; width:94px; height:9px;"><span style="font-family: unknown; font-size:9px">메시지 필터링의 정확도
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:3332px; width:122px; height:9px;"><span style="font-family: unknown; font-size:9px">표 1. 문자 메시지의 데이터 수
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:130px; top:3361px; width:19px; height:8px;"><span style="font-family: Haansoft Batang; font-size:8px">Lines
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:127px; top:3383px; width:25px; height:35px;"><span style="font-family: Haansoft Batang; font-size:8px">5,000
+<br>5,000
+<br>49,993
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:125px; top:3424px; width:29px; height:21px;"><span style="font-family: Haansoft Batang; font-size:8px">50,000
+<br>109,993
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:64px; top:3390px; width:17px; height:8px;"><span style="font-family: Haansoft Batang; font-size:8px">Test
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:63px; top:3417px; width:19px; height:8px;"><span style="font-family: Haansoft Batang; font-size:8px">Train
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:91px; top:3383px; width:19px; height:35px;"><span style="font-family: Haansoft Batang; font-size:8px">Ham
+<br>Spam
+<br>Ham
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:91px; top:3424px; width:19px; height:8px;"><span style="font-family: Haansoft Batang; font-size:8px">Spam
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:77px; top:3437px; width:19px; height:8px;"><span style="font-family: Haansoft Batang; font-size:8px">Total
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:169px; top:3351px; width:42px; height:68px;"><span style="font-family: Haansoft Batang; font-size:8px">Words
+<br>(with 
+<br>duplication)
+<br>27,785
+<br>44,642
+<br>413,441
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:175px; top:3424px; width:29px; height:21px;"><span style="font-family: Haansoft Batang; font-size:8px">424,275
+<br>910,143
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:225px; top:3351px; width:42px; height:68px;"><span style="font-family: Haansoft Batang; font-size:8px">Words
+<br>(without 
+<br>duplication)
+<br>27,732
+<br>44,610
+<br>403,520
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:231px; top:3424px; width:29px; height:21px;"><span style="font-family: Haansoft Batang; font-size:8px">420,056
+<br>895,918
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:169px; top:3448px; width:104px; height:21px;"><span style="font-family: Haansoft Batang; font-size:8px">Ham  :  정상적인  문자  메시지
+<br>Spam  :  스팸  문자  메시지
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:323px; top:3370px; width:39px; height:8px;"><span style="font-family: Haansoft Batang; font-size:8px">SVM  Light
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:387px; top:3349px; width:23px; height:8px;"><span style="font-family: Haansoft Batang; font-size:8px">CBOW
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:381px; top:3393px; width:37px; height:8px;"><span style="font-family: Haansoft Batang; font-size:8px">Skip  gram
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:428px; top:3321px; width:94px; height:8px;"><span style="font-family: Haansoft Batang; font-size:8px">Dimension Accuracy(%)
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:439px; top:3334px; width:13px; height:8px;"><span style="font-family: Haansoft Batang; font-size:8px">200
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:439px; top:3349px; width:13px; height:8px;"><span style="font-family: Haansoft Batang; font-size:8px">250
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:439px; top:3363px; width:13px; height:8px;"><span style="font-family: Haansoft Batang; font-size:8px">300
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:439px; top:3378px; width:13px; height:8px;"><span style="font-family: Haansoft Batang; font-size:8px">200
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:439px; top:3393px; width:13px; height:8px;"><span style="font-family: Haansoft Batang; font-size:8px">250
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:439px; top:3407px; width:13px; height:8px;"><span style="font-family: Haansoft Batang; font-size:8px">300
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:488px; top:3334px; width:20px; height:8px;"><span style="font-family: Haansoft Batang; font-size:8px">93.84
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:488px; top:3349px; width:20px; height:8px;"><span style="font-family: Haansoft Batang; font-size:8px">95.65
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:488px; top:3363px; width:20px; height:8px;"><span style="font-family: Haansoft Batang; font-size:8px">95.72
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:488px; top:3378px; width:20px; height:8px;"><span style="font-family: Haansoft Batang; font-size:8px">93.78
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:488px; top:3393px; width:20px; height:8px;"><span style="font-family: Haansoft Batang; font-size:8px">93.43
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:488px; top:3407px; width:20px; height:8px;"><span style="font-family: Haansoft Batang; font-size:8px">93.57
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:317px; top:3436px; width:220px; height:8px;"><span style="font-family: unknown; font-size:8px">표 3의 SVM light를 사용하여 CBOW와 skip gram의 벡터
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:3451px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">차원 수에 따른 정상적인 문자 메시지는 정상적인 문자메시지
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:3465px; width:227px; height:8px;"><span style="font-family: unknown; font-size:8px">로 스팸 문자메시지는 스팸 문자메시지로 올바르게 분류하는
+<br></span></div><div style="position:absolute; border: figure 1px solid; writing-mode:False; left:0px; top:2723px; width:594px; height:74px;"><div style="position:absolute; border: figure 1px solid; writing-mode:False; left:0px; top:2740px; width:594px; height:38px;"></div></div><span style="position:absolute; border: black 1px solid; left:58px; top:3350px; width:0px; height:97px;"></span>
+<span style="position:absolute; border: black 1px solid; left:88px; top:3381px; width:0px; height:53px;"></span>
+<span style="position:absolute; border: black 1px solid; left:115px; top:3350px; width:0px; height:97px;"></span>
+<span style="position:absolute; border: black 1px solid; left:164px; top:3350px; width:0px; height:97px;"></span>
+<span style="position:absolute; border: black 1px solid; left:216px; top:3350px; width:0px; height:97px;"></span>
+<span style="position:absolute; border: black 1px solid; left:275px; top:3350px; width:0px; height:97px;"></span>
+<span style="position:absolute; border: black 1px solid; left:57px; top:3350px; width:217px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:57px; top:3381px; width:217px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:88px; top:3395px; width:187px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:57px; top:3408px; width:217px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:88px; top:3422px; width:187px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:57px; top:3435px; width:217px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:57px; top:3447px; width:217px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:311px; top:3030px; width:0px; height:137px;"></span>
+<span style="position:absolute; border: black 1px solid; left:374px; top:3030px; width:0px; height:137px;"></span>
+<span style="position:absolute; border: black 1px solid; left:425px; top:3030px; width:0px; height:137px;"></span>
+<span style="position:absolute; border: black 1px solid; left:468px; top:3030px; width:0px; height:137px;"></span>
+<span style="position:absolute; border: black 1px solid; left:528px; top:3030px; width:0px; height:137px;"></span>
+<span style="position:absolute; border: black 1px solid; left:311px; top:3030px; width:217px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:311px; top:3043px; width:217px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:374px; top:3056px; width:154px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:311px; top:3070px; width:217px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:424px; top:3083px; width:104px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:424px; top:3095px; width:104px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:424px; top:3107px; width:104px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:374px; top:3119px; width:154px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:424px; top:3132px; width:104px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:424px; top:3144px; width:104px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:424px; top:3156px; width:104px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:311px; top:3168px; width:217px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:311px; top:3319px; width:0px; height:99px;"></span>
+<span style="position:absolute; border: black 1px solid; left:374px; top:3319px; width:0px; height:99px;"></span>
+<span style="position:absolute; border: black 1px solid; left:425px; top:3319px; width:0px; height:99px;"></span>
+<span style="position:absolute; border: black 1px solid; left:468px; top:3319px; width:0px; height:99px;"></span>
+<span style="position:absolute; border: black 1px solid; left:528px; top:3319px; width:0px; height:99px;"></span>
+<span style="position:absolute; border: black 1px solid; left:311px; top:3319px; width:217px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:311px; top:3331px; width:217px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:424px; top:3346px; width:104px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:424px; top:3360px; width:104px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:374px; top:3375px; width:154px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:424px; top:3390px; width:104px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:424px; top:3404px; width:104px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:311px; top:3419px; width:217px; height:0px;"></span>
+<div style="position:absolute; border: figure 1px solid; writing-mode:False; left:64px; top:2822px; width:216px; height:205px;"></div><div style="position:absolute; border: figure 1px solid; writing-mode:False; left:72px; top:2761px; width:197px; height:0px;"></div><div style="position:absolute; border: figure 1px solid; writing-mode:False; left:368px; top:2761px; width:154px; height:0px;"></div><span style="position:absolute; border: gray 1px solid; left:0px; top:3614px; width:595px; height:841px;"></span>
+<div style="position:absolute; top:3614px;"><a name="5">Page 5</a></div>
+<div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:3713px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">정확도에서는 CBOW과 skip gram보다 더 높은 성능을 보여
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:3728px; width:227px; height:8px;"><span style="font-family: unknown; font-size:8px">주고 있다. 이를 통해, 단어를 벡터로 표현하는 방법에서는
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:3743px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">skip gram보다 CBOW를 이용하는 것이 정확도가 더 높은 것
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:3758px; width:64px; height:8px;"><span style="font-family: unknown; font-size:8px">을 알 수 있었다.
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:148px; top:3787px; width:44px; height:11px;"><span style="font-family: unknown; font-size:11px">Ⅲ. 결 론
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:64px; top:3813px; width:220px; height:8px;"><span style="font-family: unknown; font-size:8px">핸드폰의 SMS 문자 메시지로 전송되는 대량의 광고문자들
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:3828px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">을 필터링하는 방법으로 워드 임베딩과 딥러닝 기법을 이용한
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:3842px; width:227px; height:8px;"><span style="font-family: unknown; font-size:8px">스팸 문자 메시지 필터링 방법을 제안하였다. 스팸 문자들은
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:3857px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">의도적으로 띄어쓰기 규칙을 지키지 않거나 한글 자모 대신에
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:3872px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">특수기호나 기호를 이용하여 음절을 구성하는 경우가 많은데
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:3887px; width:227px; height:8px;"><span style="font-family: unknown; font-size:8px">자동 띄어쓰기를 이용하여 띄어쓰기 오류를 교정하고, 자모
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:3902px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">해체와 특수기호로 대치된 경우는 왜곡된 단어 형태를 포함하
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:3917px; width:227px; height:8px;"><span style="font-family: unknown; font-size:8px">여 워드 임베딩을 수행하였다. 문자 메시지를 구성하는 문장
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:3931px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">벡터 표현은 CBOW와 skip gram이라는 두 가지 방식으로 워
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:3946px; width:227px; height:8px;"><span style="font-family: unknown; font-size:8px">드 임베딩 실험을 수행하였고, 딥러닝 기법의 효용성을 검증
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:3961px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">하기 위해 SVM 방법의 문자 필터링과 성능을 비교하였다. 그
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:3976px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">결과로 SVM과 딥러닝 기법 모두 CBOW를 이용한 워드 임베
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:3991px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">딩 성능이 skip gram 방식보다 정확도가 높은 것을 알 수 있
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:4006px; width:228px; height:8px;"><span style="font-family: unknown; font-size:8px">었고, 또한 딥러닝 기법이 SVM 방식보다 더 성능이 좋은 것
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:4020px; width:55px; height:8px;"><span style="font-family: unknown; font-size:8px">을 확인하였다.
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:135px; top:4063px; width:70px; height:11px;"><span style="font-family: unknown; font-size:11px">REFERENCES
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:4089px; width:230px; height:87px;"><span style="font-family: unknown; font-size:9px">[1] 박경민, 최훈, 이창건, 황인태, 이칠우, &quot;휴대 단말
+<br>을 위한 지능형 사용자 인터페이스 플랫폼,&quot; 스마
+<br>트미디어저널, 제1권, 제4호, 44-51쪽, 2012년 12월
+<br>[2] 손대능, 이정태, 이승욱, 신중휘, 임해창, “문자 메
+<br>시지의 특성을 고려한 한국어 모바일 스팸필터링
+<br>시스템,” 한국산학기술학회논문지, 제11권, 제7호,
+<br>2595-2602쪽, 2010년 7월
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:4179px; width:230px; height:35px;"><span style="font-family: unknown; font-size:9px">[3] M. Salib, “MeatSlicer: Spam Classification with
+<br>Naive Bayes and Smart Heuristics,” </span><span style="font-family: unknown; font-size:9px">Proceedings
+<br></span><span style="font-family: unknown; font-size:9px">ofthe SpamConference, Dec. 2002.
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:4218px; width:230px; height:74px;"><span style="font-family: unknown; font-size:9px">[4] K. Schneider, “A Comparison of Event Models
+<br>for Naive Bayes Anti-Spam E-Mail Filtering,”
+<br>Proceedings of10thConference ofthe European
+<br>Chapter of the Association for Computational
+<br>Linguistics(EACL 2003), Budapest, Hungary, vol.
+<br>1, pp. 307-314, April. 2003.
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:4296px; width:230px; height:35px;"><span style="font-family: unknown; font-size:9px">[5] 강승식, “메일 주소 유효성과 제목-내용 가중치 기
+<br>법에 의한 스팸 메일 필터링,” 멀티미디어학회 논
+<br></span><span style="font-family: unknown; font-size:9px">문지</span><span style="font-family: unknown; font-size:9px">, 제9권, 제2호, 255-263쪽, 2006년 2월
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:4335px; width:228px; height:23px;"><span style="font-family: unknown; font-size:9px">[6] Drucker, H., Wu, D., &amp; Vapnik, V. N., “Support
+<br>for Spam Categorization,”
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:74px; top:4348px; width:77px; height:9px;"><span style="font-family: unknown; font-size:9px">Vector Machines
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:327px; top:3713px; width:210px; height:22px;"><span style="font-family: unknown; font-size:9px">IEEE Transactions on Neural networks, vol. 10,
+<br>Issue 5, pp. 1048-1054, Sep. 1999
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:3739px; width:230px; height:113px;"><span style="font-family: unknown; font-size:9px">[7] 허기수, 정현태, 박아론, 백성준, &quot;양자 유전 알고
+<br>리즘을 이용한 특징 선택 및 성능 분석,&quot; 스마트미
+<br>디어저널, 제1권, 제1호, 40-45쪽, 2012년 3월
+<br>[8] Mikolov, T., Sutskever, I., Chen, K., Corrado, G.
+<br>S., &amp; Dean, J., “Distributed Representations of
+<br>Words and Phrases and their Compositionality,”
+<br>In Advances in neural information processing
+<br>systems, Lake Tahoe,
+<br>the United States, pp.
+<br>3111-3119, Dec. 2013.
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:3856px; width:97px; height:9px;"><span style="font-family: unknown; font-size:9px">[9] Mikolov, Tomáš,
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:418px; top:3856px; width:7px; height:9px;"><span style="font-family: unknown; font-size:9px">et
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:436px; top:3856px; width:11px; height:9px;"><span style="font-family: unknown; font-size:9px">al.,
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:374px; top:3869px; width:23px; height:9px;"><span style="font-family: unknown; font-size:9px">based
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:327px; top:3856px; width:213px; height:61px;"><span style="font-family: unknown; font-size:9px">&quot;Recurrent neural
+<br>language model,&quot; Eleventh
+<br>network
+<br>Annual Conference of the International Speech
+<br>Communication Association, Makuhari, Chiba,
+<br>Japan, pp. 1045-1048, Sep. 2010.
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:3921px; width:231px; height:139px;"><span style="font-family: unknown; font-size:9px">[10] Mikolov, T., Yih, W. T., &amp; Zweig, G.,
+<br></span><span style="font-family: unknown; font-size:9px">in Continuous Space
+<br>“Linguistic Regularities
+<br>Word Representations,” In Proceedings of the
+<br>2013 Conference ofthe NorthAmerican Chapter
+<br>ofthe Association for Computational Linguistics:
+<br>HumanLanguage Technologies, Atlanta, Georgia
+<br>, the United States, pp. 746-751, Jun. 2013.
+<br>[11] Manevitz, L. M., &amp; Yousef, M., “One-class
+<br>SVMs for Document Classification,” Journal of
+<br>machine Learning research, vol. 2, pp. 139-154,
+<br>Dec. 2001.
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:351px; top:4077px; width:117px; height:9px;"><span style="font-family: unknown; font-size:9px">“Parsing Natural Scenes
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:4064px; width:230px; height:74px;"><span style="font-family: unknown; font-size:9px">[12] Socher, R., Lin, C. C., Manning, C., &amp; Ng, A.
+<br>Y.,
+<br>and Natural
+<br>Language with Recursive Neural Networks,” In
+<br>Proceedings ofthe 28th international conference
+<br>on machine learning (ICML-11), Bellevue,
+<br>Washington, USA, pp. 129-136, Jul. 2011.
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:4142px; width:230px; height:152px;"><span style="font-family: unknown; font-size:9px">[13] Chen, D., &amp; Manning, C., “A Fast and Accurate
+<br>Dependency Parser using Neural Networks,” In
+<br>Proceedings ofthe 2014 conference on empirical
+<br>methods in natural language processing
+<br></span><span style="font-family: unknown; font-size:9px">(EMNLP), Doha, Qatar, pp. 740-750, Oct. 2014.
+<br></span><span style="font-family: unknown; font-size:9px">[14] Simard, P. Y., Steinkraus, D., &amp; Platt, J. C.,
+<br>“Best
+<br>Convolutional Neural
+<br>for
+<br>Networks Applied to Visual Document Analysis,”
+<br>In Proceedings of the 7th International
+<br>Conference on Document Analysis and
+<br>Recognition(ICDAR 2003), Edinburgh, Scotland,
+<br>UK, vol. 2, pp. 958-962, Aug. 2003.
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:364px; top:4220px; width:37px; height:9px;"><span style="font-family: unknown; font-size:9px">Practices
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:4298px; width:231px; height:35px;"><span style="font-family: unknown; font-size:9px">[15] Mikolov, Tomas, et al. “Efficient estimation of
+<br>word representations in vector space,” arXiv
+<br></span><span style="font-family: unknown; font-size:9px">preprint arXiv:1301.3781</span><span style="font-family: unknown; font-size:9px">, 2013.
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:310px; top:4337px; width:228px; height:22px;"><span style="font-family: unknown; font-size:9px">[16] Sahlgren, M., “The distributional hypothesis,”
+<br>Italian Journal of Disability Studies, vol.20, pp.
+<br></span></div><div style="position:absolute; border: figure 1px solid; writing-mode:False; left:0px; top:3614px; width:594px; height:74px;"><div style="position:absolute; border: figure 1px solid; writing-mode:False; left:0px; top:3631px; width:594px; height:38px;"></div></div><div style="position:absolute; border: figure 1px solid; writing-mode:False; left:72px; top:3652px; width:146px; height:0px;"></div><div style="position:absolute; border: figure 1px solid; writing-mode:False; left:325px; top:3652px; width:197px; height:0px;"></div><span style="position:absolute; border: gray 1px solid; left:0px; top:4505px; width:595px; height:841px;"></span>
+<div style="position:absolute; top:4505px;"><a name="6">Page 6</a></div>
+<div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:74px; top:4604px; width:49px; height:9px;"><span style="font-family: unknown; font-size:9px">33-53, 2008.
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:4617px; width:228px; height:35px;"><span style="font-family: unknown; font-size:9px">[17] 강승식, &quot;음절 bigram을 이용한 띄어쓰기 오류의
+<br>자동 교정,&quot; 음성과학, 제8권, 제2호, 83-90쪽, 2001
+<br>년 6월
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:4656px; width:227px; height:35px;"><span style="font-family: unknown; font-size:9px">[18] 강승식, 장두성, &quot;SMS 변형된 문자열의 자동 오
+<br>류 교정 시스템,&quot; 정보과학회논문지, 제35권, 제6
+<br>호, 386-391쪽, 2008년 6월
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:56px; top:4695px; width:228px; height:35px;"><span style="font-family: unknown; font-size:9px">[19] 강승식, &quot;스팸 문자 필터링을 위한 변형된 한글
+<br>SMS 문장의 정규화 기법,&quot; 정보처리학회논문지,
+<br>제3권, 제7호, 271-276쪽, 2014년 7월
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:151px; top:4753px; width:45px; height:9px;"><span style="font-family: unknown; font-size:9px">저 자 소 개
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:130px; top:4779px; width:152px; height:22px;"><span style="font-family: unknown; font-size:10px">이현영(학생회원)
+<br></span><span style="font-family: unknown; font-size:8px">2016년 국민대학교 컴퓨터공학 학과
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:161px; top:4804px; width:76px; height:8px;"><span style="font-family: unknown; font-size:8px">학사 졸업(공학사).
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:130px; top:4816px; width:152px; height:32px;"><span style="font-family: unknown; font-size:8px">2016년 ~ 2017년 SK hynix memory
+<br></span><span style="font-family: unknown; font-size:8px">solutions inc. Intern
+<br>2017년 ~ 현재 국민대학교 컴퓨터공
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:161px; top:4851px; width:74px; height:8px;"><span style="font-family: unknown; font-size:8px">학 학과 석사과정.
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:87px; top:4864px; width:16px; height:9px;"><span style="font-family: Haansoft Batang; font-size:9px">사진
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:87px; top:4952px; width:16px; height:9px;"><span style="font-family: Haansoft Batang; font-size:9px">사진
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:83px; top:4969px; width:24px; height:9px;"><span style="font-family: Haansoft Batang; font-size:9px">23x30
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:59px; top:4874px; width:223px; height:20px;"><span style="font-family: unknown; font-size:8px">&lt;주관심분야 : 자연어처리, 머신 러닝, 딥러닝, 빅데이
+<br>터 분석&gt;
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:83px; top:4882px; width:24px; height:9px;"><span style="font-family: Haansoft Batang; font-size:9px">23x30
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:130px; top:4923px; width:152px; height:22px;"><span style="font-family: unknown; font-size:10px">강승식(정회원)
+<br></span><span style="font-family: unknown; font-size:8px">1986년 서울대학교 전자계산기공학과
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:130px; top:4960px; width:152px; height:8px;"><span style="font-family: unknown; font-size:8px">1988년 서울대학교 전자계산기공학과
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:130px; top:4984px; width:152px; height:8px;"><span style="font-family: unknown; font-size:8px">1993년 서울대학교 전자계산기공학과
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:161px; top:4948px; width:42px; height:8px;"><span style="font-family: unknown; font-size:8px">학사 졸업.
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:161px; top:4972px; width:65px; height:8px;"><span style="font-family: unknown; font-size:8px">학과 석사 졸업.
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:161px; top:4995px; width:65px; height:8px;"><span style="font-family: unknown; font-size:8px">학과 박사 졸업.
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:59px; top:5019px; width:163px; height:8px;"><span style="font-family: unknown; font-size:8px">이닝, 빅데이터 분석, 상황인지 컴퓨팅&gt;
+<br></span></div><div style="position:absolute; border: textbox 1px solid; writing-mode:lr-tb; left:130px; top:5007px; width:152px; height:8px;"><span style="font-family: unknown; font-size:8px">&lt;주관심분야 : 자연어처리, 텍스트 마
+<br></span></div><div style="position:absolute; border: figure 1px solid; writing-mode:False; left:0px; top:4505px; width:594px; height:74px;"><div style="position:absolute; border: figure 1px solid; writing-mode:False; left:0px; top:4522px; width:594px; height:38px;"></div></div><span style="position:absolute; border: black 1px solid; left:59px; top:4778px; width:65px; height:84px;"></span>
+<div style="position:absolute; border: figure 1px solid; writing-mode:False; left:59px; top:4781px; width:65px; height:82px;"></div><span style="position:absolute; border: black 1px solid; left:59px; top:4923px; width:65px; height:84px;"></span>
+<div style="position:absolute; border: figure 1px solid; writing-mode:False; left:56px; top:4923px; width:68px; height:86px;"></div><span style="position:absolute; border: black 1px solid; left:57px; top:4757px; width:81px; height:0px;"></span>
+<span style="position:absolute; border: black 1px solid; left:201px; top:4757px; width:82px; height:0px;"></span>
+<div style="position:absolute; border: figure 1px solid; writing-mode:False; left:72px; top:4543px; width:197px; height:0px;"></div><div style="position:absolute; border: figure 1px solid; writing-mode:False; left:368px; top:4543px; width:154px; height:0px;"></div><div style="position:absolute; top:0px;">Page: <a href="#1">1</a>, <a href="#2">2</a>, <a href="#3">3</a>, <a href="#4">4</a>, <a href="#5">5</a>, <a href="#6">6</a></div>
+</body></html>
